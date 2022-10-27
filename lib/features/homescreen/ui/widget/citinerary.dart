@@ -33,7 +33,7 @@ class _Citinerary extends State<Citinerary> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      height: MyCons.heigh_screen * 0.28,
+      height: MyCons.heigh_screen * 0.2,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
@@ -52,68 +52,70 @@ class _Citinerary extends State<Citinerary> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          height: MyCons.heigh_screen * 0.2,
-          width: MyCons.width_screen * 0.2,
-          decoration: BoxDecoration(
-            color: (citineraryModel.image == null)
-                ? Color.fromARGB(58, 104, 183, 93)
-                : Colors.transparent,
-            borderRadius: BorderRadius.all(Radius.circular(MyCons.size50)),
-          ),
-          child: (citineraryModel.image == null)
-              ? Icon(
-                  Icons.add,
-                  size: 75,
-                  color: MyColors.mainColor10,
-                )
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(MyCons.size50),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(MyCons.size50)),
-                        border:
-                            Border.all(width: 2, color: MyColors.mainColor)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(MyCons.size50),
-                        child: Image.network(
-                          citineraryModel.image.toString(),
-                          fit: BoxFit.cover,
+        Expanded(
+          child: Container(
+            width: MyCons.width_screen * 0.2,
+            decoration: BoxDecoration(
+              color: (citineraryModel.image == null)
+                  ? Color.fromARGB(58, 104, 183, 93)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.all(Radius.circular(MyCons.size50)),
+            ),
+            child: (citineraryModel.image == null)
+                ? Icon(
+                    Icons.add,
+                    size: 75,
+                    color: MyColors.mainColor10,
+                  )
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(MyCons.size50),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(MyCons.size50)),
+                          border:
+                              Border.all(width: 2, color: MyColors.mainColor)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(MyCons.size50),
+                          child: Image.network(
+                            citineraryModel.image.toString(),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
+          ),
         ),
         SizedBox(
           height: MyCons.size10,
         ),
-        Expanded(
-          child: Container(
-              alignment: Alignment.center,
-              width: MyCons.width_screen * 0.2,
-              decoration: BoxDecoration(
-                  color: MyColors.mainColor50,
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(MyCons.size50))),
-              child: Padding(
-                padding: EdgeInsets.all(MyCons.size8),
-                child: Flexible(
-                  child: Text(
-                    "${citineraryModel.title}",
-                    style: TextStyle(
-                        color: MyColors.mainColor,
-                        fontWeight: citineraryModel.image == null
-                            ? FontWeight.bold
-                            : null),
-                  ),
+        Container(
+            alignment: Alignment.center,
+            width: MyCons.width_screen * 0.2,
+            decoration: BoxDecoration(
+                color: citineraryModel.image != null
+                    ? Colors.transparent
+                    : MyColors.mainColor50,
+                borderRadius: BorderRadius.all(Radius.circular(MyCons.size50))),
+            child: Padding(
+              padding: EdgeInsets.all(MyCons.size8),
+              child: Flexible(
+                child: Text(
+                  "${citineraryModel.title.toString()}",
+                  style: TextStyle(
+                      color: citineraryModel.image != null
+                          ? null
+                          : MyColors.mainColor,
+                      fontWeight: citineraryModel.image == null
+                          ? FontWeight.bold
+                          : null),
                 ),
-              )),
-        )
+              ),
+            ))
       ],
     );
   }
